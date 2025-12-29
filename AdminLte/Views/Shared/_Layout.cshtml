@@ -15,7 +15,9 @@
     
     <partial name="_Navbar" />
 
-    <partial name="_Sidebar" />
+    @* <partial name="_Sidebar" /> *@
+
+    @await Component.InvokeAsync("Sidebar")
 
     <div class="content-wrapper">
         <section class="content">

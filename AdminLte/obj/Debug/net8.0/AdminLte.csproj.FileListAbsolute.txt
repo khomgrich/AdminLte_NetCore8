@@ -64,3 +64,4 @@ C:\888_ProjectX3\202_Git\AdminLte_NetCore8\AdminLte\obj\Debug\net8.0\refint\Admi
 C:\888_ProjectX3\202_Git\AdminLte_NetCore8\AdminLte\obj\Debug\net8.0\AdminLte.pdb
 C:\888_ProjectX3\202_Git\AdminLte_NetCore8\AdminLte\obj\Debug\net8.0\AdminLte.genruntimeconfig.cache
 C:\888_ProjectX3\202_Git\AdminLte_NetCore8\AdminLte\obj\Debug\net8.0\ref\AdminLte.dll
+C:\888_ProjectX3\202_Git\AdminLte_NetCore8\AdminLte\obj\Debug\net8.0\AdminLte.sourcelink.json

@@ -1,0 +1,33 @@
+﻿@model MenuItem
+@{
+    var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+    var hasChildren = Model.Children != null && Model.Children.Any();
+
+    // Logic เช็คว่าลูกหรือตัวเองกำลังถูกเปิดอยู่หรือไม่
+    bool isActive = (currentController == Model.Controller);
+    bool isMenuOpen = hasChildren && Model.Children.Any(c => c.Controller == currentController);
+}
+
+<li class="nav-item @(isMenuOpen ? "menu-open" : "")">
+    <a href="@(hasChildren ? "#" : Url.Action(Model.Action, Model.Controller))"
+       class="nav-link @(isActive || isMenuOpen ? "active" : "")">
+        <i class="nav-icon @Model.Icon"></i>
+        <p>
+            @Model.Title
+            @if (hasChildren)
+            {
+                <i class="right fas fa-angle-left"></i>
+            }
+        </p>
+    </a>
+    @if (hasChildren)
+    {
+        <ul class="nav nav-treeview">
+            @foreach (var child in Model.Children!)
+            {
+                @* เรียกตัวเองซ้ำเพื่อวาดเมนูระดับถัดไป *@
+                <partial name="_SidebarMenuItem" model="child" />
+            }
+        </ul>
+    }
+</li>

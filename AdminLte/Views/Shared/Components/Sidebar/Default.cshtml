@@ -1,0 +1,29 @@
+﻿@model List<MenuItem>
+
+@* ดึงข้อมูลเส้นทางปัจจุบันเพื่อทำ Active Menu *@
+@{
+    var controller = ViewContext.RouteData.Values["Controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["Action"]?.ToString();
+}
+
+<aside id="mainSidebar" class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="/" class="brand-link">
+        @* <img src="~/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> *@
+        <span class="brand-text font-weight-light">KTB-Passbook</span>
+    </a>
+
+    <div class="sidebar">
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+
+
+                @foreach (var menu in Model)
+                {
+                    @* ส่งข้อมูลเมนูแต่ละตัวเข้าสู่กระบวนการ Recursive *@
+                    <partial name="_SidebarMenuItem" model="menu" />
+                }
+
+            </ul>
+        </nav>
+    </div>
+</aside>
