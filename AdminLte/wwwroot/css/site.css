@@ -1,0 +1,58 @@
+﻿html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* ปรับขนาดตัวหนังสือและไอคอนใน Sidebar */
+.main-sidebar .nav-link p {
+    font-size: 0.85rem !important; /* ปรับค่าตามต้องการ เช่น 13px หรือ 0.8rem */
+}
+
+.main-sidebar .nav-link i {
+    font-size: 0.85rem !important; /* ปรับขนาดไอคอนให้เล็กลงตามตัวหนังสือ */
+}
+
+/* ปรับขนาดตัวหนังสือ Header (ถ้ามี) */
+.sidebar .nav-header {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 1rem;
+}
+
+/* ย่อหน้าระดับที่ 2 (ลูก) */
+.nav-treeview > .nav-item > .nav-link {
+    padding-left: 1.5rem !important; /* ขยับเข้ามาจากขอบซ้าย */
+}
+
+/* ย่อหน้าระดับที่ 3 (หลาน) */
+.nav-treeview .nav-treeview > .nav-item > .nav-link {
+    padding-left: 2.5rem !important; /* ขยับเข้ามาลึกขึ้น */
+}
+
+/* ย่อหน้าระดับที่ 4 (ถ้ามี) */
+.nav-treeview .nav-treeview .nav-treeview > .nav-item > .nav-link {
+    padding-left: 3.5rem !important;
+}
+
+/* ปรับขนาดไอคอนในเมนูย่อยให้เล็กลงเล็กน้อยเพื่อความสวยงาม */
+.nav-treeview .nav-icon {
+    font-size: 0.8rem !important;
+}
+

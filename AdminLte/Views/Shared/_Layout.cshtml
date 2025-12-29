@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AdminLte</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/AdminLte.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="~/dist/css/adminlte.min.css">
+</head>
+<body>
+    
+    <partial name="_Navbar" />
+
+    <partial name="_Sidebar" />
+
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                @RenderBody()
+            </div>
+        </section>
+    </div>
+
+    <partial name="_Footer" />
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/dist/js/adminlte.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+<script>
+    var darkModeBtn = document.getElementById('darkModeBtn');
+    var body = document.body;
+    var icon = darkModeBtn.querySelector('i');
+    var sidebar = document.getElementById('mainSidebar'); // ดึง Sidebar มา
+
+    // 1. ตรวจสอบค่าที่บันทึกไว้ใน LocalStorage เมื่อโหลดหน้าเว็บ
+    if (localStorage.getItem('theme') === 'dark') {
+        enableDarkMode();
+    }
+
+    // 2. เมื่อคลิกปุ่มสลับโหมด
+    darkModeBtn.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+    });
+
+    function enableDarkMode() {
+        body.classList.add('dark-mode');
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+        localStorage.setItem('theme', 'dark');
+        
+        // เปลี่ยน Sidebar จากสีขาวเป็นสีดำ
+        if(sidebar) {
+            sidebar.classList.replace('sidebar-light-primary', 'sidebar-dark-primary');
+        }
+
+        // ปรับ Navbar ให้เป็นสีเข้ม (Optional)
+        $('.main-header').removeClass('navbar-white navbar-light').addClass('navbar-dark');
+    }
+
+    function disableDarkMode() {
+        body.classList.remove('dark-mode');
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+        localStorage.setItem('theme', 'light');
+
+        // เปลี่ยน Sidebar จากสีดำเป็นสีขาว
+        if(sidebar) {
+            sidebar.classList.replace('sidebar-dark-primary', 'sidebar-light-primary');
+        }
+
+        // ปรับ Navbar ให้เป็นสีอ่อน (Optional)
+        $('.main-header').removeClass('navbar-dark').addClass('navbar-white navbar-light');
+    }
+
+    // ตรวจสอบตอนโหลดหน้า
+    document.addEventListener("DOMContentLoaded", function() {
+        if (localStorage.getItem('theme') === 'dark') {
+            enableDarkMode();
+        } else {
+            disableDarkMode();
+        }
+    });
+</script>

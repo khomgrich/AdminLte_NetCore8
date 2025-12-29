@@ -1,0 +1,100 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+@* ดึงข้อมูลเส้นทางปัจจุบันเพื่อทำ Active Menu *@
+@{
+    var controller = ViewContext.RouteData.Values["Controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["Action"]?.ToString();
+}
+
+<aside id="mainSidebar" class="main-sidebar sidebar-dark-primary elevation-4">
+    <a href="/" class="brand-link">
+        <img src="~/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <span class="brand-text font-weight-light">My Project</span>
+    </a>
+
+    <div class="sidebar">
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+
+                @* เมนูหน้าแรก *@
+                <li class="nav-item">
+                    <a asp-controller="Home" asp-action="Index"
+                       class="nav-link @(controller == "Home" && action == "Index" ? "active" : "")">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+
+                @* เมนูจัดการสินค้า *@
+                <li class="nav-item @(controller == "Inventory" ? "menu-open" : "")">
+                    <a href="#" class="nav-link @(controller == "Inventory" ? "active" : "")">
+                        <i class="nav-icon fas fa-boxes"></i>
+                        <p>
+                            จัดการคลังสินค้า
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="Inventory" asp-action="Stock"
+                               class="nav-link @(action == "Stock" ? "active" : "")">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>สต็อกสินค้า</p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item @(action == "Reports" ? "menu-open" : "")">
+                            <a href="#" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    รายงาน
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a asp-controller="Inventory" asp-action="DailyReport" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>รายงานประจำวัน</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Inventory" asp-action="MonthlyReport" class="nav-link">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>รายงานประจำเดือน</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+
+                @* ตัวอย่างเมนูแบบมีเมนูย่อย (Treeview) *@
+                <li class="nav-item @(controller == "Settings" ? "menu-open" : "")">
+                    <a href="#" class="nav-link @(controller == "Settings" ? "active" : "")">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>ตั้งค่า <i class="right fas fa-angle-left"></i></p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a asp-controller="Settings" asp-action="Profile"
+                               class="nav-link @(action == "Profile" ? "active" : "")">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>ข้อมูลส่วนตัว</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+            </ul>
+        </nav>
+    </div>
+</aside>
